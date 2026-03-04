@@ -1,0 +1,13 @@
+resource_group_name              = "rg-lab-cpp-sbterratest"
+name                             = "sb-lab-cpp-terratest"
+vnet_name                        = "vnet-lab-cpp-sbterratest"
+location                         = "uksouth"
+namespace                        = "cpp"
+costcode                         = "terratest"
+attribute                        = ""
+owner                            = "EI"
+environment                      = "nonlive"
+application                      = "test"
+type                             = "servicebus"
+sku                              = "Standard"
+public_network_access_enabled    = true

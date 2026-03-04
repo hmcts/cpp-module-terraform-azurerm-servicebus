@@ -1,0 +1,55 @@
+# Terratest with queues, topics, and subscriptions (no RBAC object_ids to avoid dependency on spn_object_ids)
+resource_group_name           = "rg-lab-cpp-sbterratest2"
+name                          = "sb-lab-cpp-trtest2"
+vnet_name                     = "vnet-lab-cpp-sbterratest2"
+location                      = "uksouth"
+namespace                     = "cpp"
+costcode                      = "terratest"
+attribute                     = ""
+owner                         = "EI"
+environment                   = "nonlive"
+application                   = "test"
+type                          = "servicebus"
+sku                           = "Standard"
+public_network_access_enabled = true
+
+queues = {
+  payments = {
+    max_delivery_count                   = 10
+    dead_lettering_on_message_expiration = true
+    role_assignments                     = []
+  }
+  fraudalerts = {
+    max_delivery_count                   = 5
+    dead_lettering_on_message_expiration = false
+    role_assignments                     = []
+  }
+}
+
+topics = {
+  orderevents = {
+    role_assignments = []
+    subscriptions = {
+      accounting = {
+        max_delivery_count                   = 10
+        dead_lettering_on_message_expiration = false
+        role_assignments                     = []
+      }
+      audit = {
+        max_delivery_count                   = 10
+        dead_lettering_on_message_expiration = false
+        role_assignments                     = []
+      }
+    }
+  }
+  customerevents = {
+    role_assignments = []
+    subscriptions = {
+      notifications = {
+        max_delivery_count                   = 5
+        dead_lettering_on_message_expiration = false
+        role_assignments                     = []
+      }
+    }
+  }
+}
