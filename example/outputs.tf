@@ -14,6 +14,16 @@ output "servicebus_namespace_id" {
   value = module.servicebus_namespace.servicebus_namespace_id
 }
 
+output "private_endpoint_id" {
+  description = "Set when public_network_access_enabled = false; used by zero-trust terratest."
+  value       = module.servicebus_namespace.private_endpoint_id
+}
+
+output "private_dns_zone_id" {
+  description = "Private DNS zone for Service Bus (privatelink.servicebus.windows.net). Set when using zero-trust example; used to assert DNS registration in terratest."
+  value       = azurerm_private_dns_zone.servicebus.id
+}
+
 output "queues" {
   value     = module.servicebus_namespace.queues
   sensitive = false

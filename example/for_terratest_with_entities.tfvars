@@ -1,4 +1,3 @@
-# Terratest with queues, topics, and subscriptions (no RBAC object_ids to avoid dependency on spn_object_ids)
 resource_group_name           = "rg-lab-cpp-sbterratest2"
 name                          = "sb-lab-cpp-trtest2"
 vnet_name                     = "vnet-lab-cpp-sbterratest2"

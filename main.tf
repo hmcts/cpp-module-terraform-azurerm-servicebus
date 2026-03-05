@@ -7,7 +7,7 @@ resource "azurerm_servicebus_namespace" "main" {
   premium_messaging_partitions  = var.sku == local.premium_sku_name ? local.effective_premium_messaging_partitions : null
   public_network_access_enabled = var.public_network_access_enabled
   minimum_tls_version           = "1.2"
-  local_auth_enabled            = false 
+  local_auth_enabled            = var.local_auth_enabled 
   tags                          = var.tags
 
   identity {
@@ -26,7 +26,7 @@ resource "azurerm_servicebus_namespace" "main" {
 }
 
 resource "azurerm_private_endpoint" "namespace" {
-  count               = var.private_endpoint_subnet_id != null ? 1 : 0
+  count               = !var.public_network_access_enabled ? 1 : 0
   name                = "pe-sb-${azurerm_servicebus_namespace.main.name}"
   location            = var.location
   resource_group_name = var.resource_group_name

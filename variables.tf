@@ -70,6 +70,12 @@ variable "private_dns_zone_id" {
   default     = null
 }
 
+variable "local_auth_enabled" {
+  description = "Whether local authentication is enabled. Set to false for Entra Authentication only."
+  type        = bool
+  default     = false
+}
+
 variable "log_analytics_workspace_id" {
   description = "Log Analytics workspace ID for diagnostic logs and metrics."
   type        = string
