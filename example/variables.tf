@@ -125,12 +125,12 @@ variable "role_assignments" {
 
 variable "queues" {
   description = "Optional queues (map). Omit or null for none."
-  type = map(any)
-  default = null
+  type        = map(any)
+  default     = null
 }
 
 variable "topics" {
   description = "Optional topics with optional subscriptions (map). Omit or null for none."
-  type = map(any)
-  default = null
+  type        = map(any)
+  default     = null
 }

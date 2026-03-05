@@ -7,7 +7,7 @@ resource "azurerm_servicebus_namespace" "main" {
   premium_messaging_partitions  = var.sku == local.premium_sku_name ? local.effective_premium_messaging_partitions : null
   public_network_access_enabled = var.public_network_access_enabled
   minimum_tls_version           = "1.2"
-  local_auth_enabled            = var.local_auth_enabled 
+  local_auth_enabled            = var.local_auth_enabled
   tags                          = var.tags
 
   identity {
@@ -89,16 +89,16 @@ resource "azurerm_role_assignment" "namespace" {
 }
 
 resource "azurerm_servicebus_queue" "queue" {
-  for_each   = local.queues_map
-  name       = each.key
+  for_each     = local.queues_map
+  name         = each.key
   namespace_id = azurerm_servicebus_namespace.main.id
 
-  max_delivery_count                   = each.value.max_delivery_count
-  dead_lettering_on_message_expiration = each.value.dead_lettering_on_message_expiration
-  default_message_ttl                 = each.value.default_message_ttl
-  lock_duration                       = each.value.lock_duration
+  max_delivery_count                      = each.value.max_delivery_count
+  dead_lettering_on_message_expiration    = each.value.dead_lettering_on_message_expiration
+  default_message_ttl                     = each.value.default_message_ttl
+  lock_duration                           = each.value.lock_duration
   duplicate_detection_history_time_window = each.value.duplicate_detection_history_time_window
-  requires_session                    = each.value.requires_session
+  requires_session                        = each.value.requires_session
 }
 
 resource "azurerm_role_assignment" "queue" {
@@ -109,13 +109,13 @@ resource "azurerm_role_assignment" "queue" {
 }
 
 resource "azurerm_servicebus_topic" "topic" {
-  for_each   = local.topics_map
-  name       = each.key
+  for_each     = local.topics_map
+  name         = each.key
   namespace_id = azurerm_servicebus_namespace.main.id
 
-  default_message_ttl           = each.value.default_message_ttl
-  max_size_in_megabytes        = each.value.max_size_in_megabytes
-  requires_duplicate_detection = each.value.requires_duplicate_detection
+  default_message_ttl                     = each.value.default_message_ttl
+  max_size_in_megabytes                   = each.value.max_size_in_megabytes
+  requires_duplicate_detection            = each.value.requires_duplicate_detection
   duplicate_detection_history_time_window = each.value.duplicate_detection_history_time_window
 }
 
@@ -133,8 +133,8 @@ resource "azurerm_servicebus_subscription" "subscription" {
 
   max_delivery_count                   = each.value.max_delivery_count
   dead_lettering_on_message_expiration = each.value.dead_lettering_on_message_expiration
-  default_message_ttl                 = each.value.default_message_ttl
-  lock_duration                       = each.value.lock_duration
+  default_message_ttl                  = each.value.default_message_ttl
+  lock_duration                        = each.value.lock_duration
 }
 
 resource "azurerm_role_assignment" "subscription" {

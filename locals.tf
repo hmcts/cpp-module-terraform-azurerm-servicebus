@@ -1,25 +1,25 @@
 locals {
-  premium_sku_name  = "Premium"
-  standard_sku_name = "Standard"
-  premium_capacity = var.sku == "Premium" ? (contains([1, 2, 4], var.capacity) ? var.capacity : 1) : null
+  premium_sku_name                       = "Premium"
+  standard_sku_name                      = "Standard"
+  premium_capacity                       = var.sku == "Premium" ? (contains([1, 2, 4], var.capacity) ? var.capacity : 1) : null
   effective_premium_messaging_partitions = var.sku == "Premium" ? coalesce(var.premium_messaging_partitions, var.capacity) : null
-  
+
   post_private_endpoint_sleep_duration = "30s"
 
-  queues_map  = coalesce(var.queues, {})
-  topics_map  = coalesce(var.topics, {})
+  queues_map = coalesce(var.queues, {})
+  topics_map = coalesce(var.topics, {})
 
   subscriptions_flat = merge(flatten([
     for topic_key, topic in local.topics_map : [
       for sub_key, sub in coalesce(try(topic.subscriptions, null), {}) : {
         "${topic_key}|${sub_key}" = {
-          topic_key                             = topic_key
-          subscription_key                      = sub_key
-          max_delivery_count                    = try(sub.max_delivery_count, 10)
-          dead_lettering_on_message_expiration  = try(sub.dead_lettering_on_message_expiration, false)
-          default_message_ttl                   = try(sub.default_message_ttl, null)
-          lock_duration                         = try(sub.lock_duration, null)
-          role_assignments                      = coalesce(try(sub.role_assignments, null), [])
+          topic_key                            = topic_key
+          subscription_key                     = sub_key
+          max_delivery_count                   = try(sub.max_delivery_count, 10)
+          dead_lettering_on_message_expiration = try(sub.dead_lettering_on_message_expiration, false)
+          default_message_ttl                  = try(sub.default_message_ttl, null)
+          lock_duration                        = try(sub.lock_duration, null)
+          role_assignments                     = coalesce(try(sub.role_assignments, null), [])
         }
       }
     ]
@@ -56,7 +56,7 @@ locals {
           topic_key        = s.topic_key
           subscription_key = s.subscription_key
           role_name        = ra.role_name
-          object_id       = ra.object_id
+          object_id        = ra.object_id
         }
       }
     ]

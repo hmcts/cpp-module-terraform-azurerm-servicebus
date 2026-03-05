@@ -118,12 +118,12 @@ variable "role_assignments" {
 variable "queues" {
   description = "Optional map of queues. Key = queue name. No queues created if null or empty."
   type = map(object({
-    max_delivery_count                   = optional(number, 10)
-    dead_lettering_on_message_expiration = optional(bool, false)
-    default_message_ttl                 = optional(string)
-    lock_duration                       = optional(string)
+    max_delivery_count                      = optional(number, 10)
+    dead_lettering_on_message_expiration    = optional(bool, false)
+    default_message_ttl                     = optional(string)
+    lock_duration                           = optional(string)
     duplicate_detection_history_time_window = optional(string)
-    requires_session                    = optional(bool, false)
+    requires_session                        = optional(bool, false)
     role_assignments = optional(list(object({
       role_name = string
       object_id = string
@@ -135,9 +135,9 @@ variable "queues" {
 variable "topics" {
   description = "Optional map of topics. Key = topic name. Each topic may have optional subscriptions. No topics/subscriptions created if null or empty."
   type = map(object({
-    default_message_ttl           = optional(string)
-    max_size_in_megabytes        = optional(number)
-    requires_duplicate_detection = optional(bool, false)
+    default_message_ttl                     = optional(string)
+    max_size_in_megabytes                   = optional(number)
+    requires_duplicate_detection            = optional(bool, false)
     duplicate_detection_history_time_window = optional(string)
     role_assignments = optional(list(object({
       role_name = string
@@ -146,8 +146,8 @@ variable "topics" {
     subscriptions = optional(map(object({
       max_delivery_count                   = optional(number, 10)
       dead_lettering_on_message_expiration = optional(bool, false)
-      default_message_ttl                 = optional(string)
-      lock_duration                       = optional(string)
+      default_message_ttl                  = optional(string)
+      lock_duration                        = optional(string)
       role_assignments = optional(list(object({
         role_name = string
         object_id = string
