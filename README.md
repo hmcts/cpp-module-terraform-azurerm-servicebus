@@ -64,6 +64,16 @@ module "servicebus_namespace" {
 }
 ```
 
+
+## Terratest
+
+We use test for testing terraform module.
+
+```shell
+cd tests/terratest
+go test -v -count=1 -timeout 30m .
+```
+
 ## Contributing
 
 We use pre-commit for Terraform format/validate and terraform-docs for README.
