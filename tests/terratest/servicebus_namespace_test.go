@@ -40,4 +40,3 @@ func TestTerraformAzureServiceBusNamespaceWithQueuesAndTopics(t *testing.T) {
 	assert.Contains(t, topicsOutput, "orderevents")
 	assert.Contains(t, topicsOutput, "customerevents")
 }
-
