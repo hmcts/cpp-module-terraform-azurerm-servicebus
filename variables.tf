@@ -122,6 +122,7 @@ variable "queues" {
     dead_lettering_on_message_expiration    = optional(bool, false)
     default_message_ttl                     = optional(string)
     lock_duration                           = optional(string)
+    requires_duplicate_detection            = optional(bool, false)
     duplicate_detection_history_time_window = optional(string)
     requires_session                        = optional(bool, false)
     role_assignments = optional(list(object({

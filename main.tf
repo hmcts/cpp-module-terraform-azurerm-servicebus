@@ -97,6 +97,7 @@ resource "azurerm_servicebus_queue" "queue" {
   dead_lettering_on_message_expiration    = each.value.dead_lettering_on_message_expiration
   default_message_ttl                     = each.value.default_message_ttl
   lock_duration                           = each.value.lock_duration
+  requires_duplicate_detection            = each.value.requires_duplicate_detection
   duplicate_detection_history_time_window = each.value.duplicate_detection_history_time_window
   requires_session                        = each.value.requires_session
 }
