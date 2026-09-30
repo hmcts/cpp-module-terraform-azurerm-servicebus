@@ -70,12 +70,6 @@ variable "private_dns_zone_id" {
   default     = null
 }
 
-variable "additional_private_dns_zone_ids" {
-  description = "Extra privatelink.servicebus.windows.net zone IDs on the same private endpoint (e.g. MDV INT hub for VPN/ADO). A records are registered in every zone."
-  type        = list(string)
-  default     = []
-}
-
 variable "local_auth_enabled" {
   description = "Whether local authentication is enabled. Set to false for Entra Authentication only."
   type        = bool

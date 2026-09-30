@@ -40,16 +40,10 @@ resource "azurerm_private_endpoint" "namespace" {
   }
 
   dynamic "private_dns_zone_group" {
-    for_each = length(compact(concat(
-      var.private_dns_zone_id != null ? [var.private_dns_zone_id] : [],
-      var.additional_private_dns_zone_ids
-    ))) > 0 ? [1] : []
+    for_each = var.private_dns_zone_id != null ? [1] : []
     content {
-      name = "dns-zone-group-sb-${azurerm_servicebus_namespace.main.name}"
-      private_dns_zone_ids = compact(concat(
-        var.private_dns_zone_id != null ? [var.private_dns_zone_id] : [],
-        var.additional_private_dns_zone_ids
-      ))
+      name                 = "dns-zone-group-sb-${azurerm_servicebus_namespace.main.name}"
+      private_dns_zone_ids = [var.private_dns_zone_id]
     }
   }
 

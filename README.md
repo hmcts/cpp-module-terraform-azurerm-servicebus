@@ -55,8 +55,7 @@ module "servicebus_namespace" {
   zone_redundant                 = true
   public_network_access_enabled  = false
   private_endpoint_subnet_id     = var.private_endpoint_subnet_id
-  private_dns_zone_id             = var.servicebus_private_dns_zone_id
-  additional_private_dns_zone_ids = var.servicebus_hub_private_dns_zone_ids
+  private_dns_zone_id            = var.servicebus_private_dns_zone_id
   log_analytics_workspace_id     = var.log_analytics_workspace_id
   cmk_key_id                     = var.cmk_key_id
   cmk_user_assigned_identity_id  = var.cmk_user_assigned_identity_id
@@ -208,14 +207,6 @@ Description: Private DNS zone ID for Service Bus (privatelink.servicebus.windows
 Type: `string`
 
 Default: `null`
-
-### <a name="input_additional_private_dns_zone_ids"></a> [additional\_private\_dns\_zone\_ids](#input\_additional\_private\_dns\_zone\_ids)
-
-Description: Extra privatelink.servicebus.windows.net zone IDs on the same private endpoint (for example MDV INT hub for VPN/ADO). A records are registered in every zone.
-
-Type: `list(string)`
-
-Default: `[]`
 
 ### <a name="input_private_endpoint_subnet_id"></a> [private\_endpoint\_subnet\_id](#input\_private\_endpoint\_subnet\_id)
 
